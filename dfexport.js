@@ -22,7 +22,7 @@ fs.readdir(testFolder, (err, files) => {
                     for (i = 0; i < JSON.parse(jsonString).length; i++) {
                         let str = "";
                         for (let j = 0; j < JSON.parse(jsonString)[i].data.length; j++) {
-                            str += JSON.parse(jsonString)[i].data[j].text;
+                            str += JSON.parse(jsonString)[i].data[j].text.replace(","," ");
                         }
                         row.push(str);
                     }
