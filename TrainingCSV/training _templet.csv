@@ -1,0 +1,3 @@
+Intent Name,Responses,Telephony Response,Output,Input,Keywords,Training phrases-1,Training phrases-2,Training phrases-3,Training phrases-4,Training phrases-5,Training phrases-6,Training phrases-7,Training phrases-8,Training phrases-9,Training phrases-10,Training phrases-11,Training phrases-12,Training phrases-13,Training phrases-14,Training phrases-15,fallback,CustomPayload,id
+Intent 1,How are you,,context=20/context2=0/context=50,inputcontext,,hi,hello,how are you,,,,,,,,,,,,,,,12345
+fallback Intent,How can I help you,,,,,,,,,,,,,,,,,,,,yes,yes/No/Start Again,12345

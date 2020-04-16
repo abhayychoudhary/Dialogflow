@@ -1,3 +1,6 @@
+import json
+
+
 def userSays(row):
     userSays = [
         {
@@ -295,46 +298,205 @@ def outputContext(row):
     return outputContext
 
 
-
-
 def outputOutputContext(row):
-    outputOutputContext = {
-        "id": "",
-        "name": "upenn.work_return_employee",
-        "auto": "true",
-        "contexts": [
-        row[4]
-        ],
-        "responses": [
-        {
-            "resetContexts": "false",
-            "affectedContexts": [
-            {
-                "name": row[3],
-                "parameters": {},
-                "lifespan": 2
-            }
+    def chip(row):
+        chip = []
+        for i in row.split("/"):
+            chip.append({"text": i})
+        return chip
+
+    def chipgoogle(row):
+        chipgoogle = []
+        for i in row.split("/"):
+            chipgoogle.append({"title": i})
+        return chipgoogle
+
+    def outputnewcontext(row):
+        outputcontextadd = []
+        for i in row.split("/"):
+            outputcontextadd.append(
+                {"name": i.split("=")[0], "parameters": {}, "lifespan": i.split("=")[1]})
+        return outputcontextadd
+
+    def inputnewcontext(row):
+        inputnewcontext = []
+        for i in row.split("/"):
+            inputnewcontext.append(i)
+        return inputnewcontext
+
+    data = chip(row[22])[0].get("text", "")
+
+    if data:
+        outputOutputContext = {
+            "id": row[23] or "",
+            "name": row[0],
+            "auto": "true",
+            "contexts": inputnewcontext(row[4]),
+            "responses": [
+                {
+                    "resetContexts": "false",
+                    "affectedContexts": outputnewcontext(row[3]),
+                    "parameters": [],
+                    "messages": [
+                        {
+                            "type": "suggestion_chips",
+                            "platform": "google",
+                            "lang": "en",
+                            "condition": "",
+                            "suggestions": chipgoogle(row[22])
+                        },
+                        {
+                            "type": 0,
+                            "lang": "en",
+                            "condition": "",
+                            "speech": row[1]
+                        },
+                        {
+                            "type": 4,
+                            "lang": "en",
+                            "condition": "",
+                            "payload": {
+                                "richContent": [
+                                    [
+                                        {
+                                            "type": "chips",
+                                            "options": chip(row[22])
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+
+                    ],
+                    "defaultResponsePlatforms": {
+                        "google": "true"
+                    },
+                    "speech": []
+                }
             ],
-            "parameters": [],
-            "messages": [
-            {
-                "type": 0,
-                "lang": "en",
-                "condition": "",
-                "speech": row[1]
-            }
-            ],
-            "defaultResponsePlatforms": {},
-            "speech": []
+            "priority": 500000,
+            "webhookUsed": "false",
+            "webhookForSlotFilling": "false",
+            "fallbackIntent": "false",
+            "events": [],
+            "conditionalResponses": [],
+            "condition": "",
+            "conditionalFollowupEvents": []
         }
+    else:
+        outputOutputContext = {
+            "id": row[23] or "",
+            "name": row[0],
+            "auto": "true",
+            "contexts": inputnewcontext(row[4]),
+            "responses": [
+                {
+                    "resetContexts": "false",
+                    "affectedContexts": outputnewcontext(row[3]),
+                    "parameters": [],
+                    "messages": [
+                        {
+                            "type": 0,
+                            "lang": "en",
+                            "condition": "",
+                            "speech": row[1]
+                        }
+
+                    ],
+                    "defaultResponsePlatforms": {
+                        "google": "true"
+                    },
+                    "speech": []
+                }
+            ],
+            "priority": 500000,
+            "webhookUsed": "false",
+            "webhookForSlotFilling": "false",
+            "fallbackIntent": "false",
+            "events": [],
+            "conditionalResponses": [],
+            "condition": "",
+            "conditionalFollowupEvents": []
+        }
+
+    return outputOutputContext
+
+
+def defaultcontext(row):
+    def chip(row):
+        chip = []
+        for i in row.split("/"):
+            chip.append({"text": i})
+        return chip
+
+    def chipgoogle(row):
+        chipgoogle = []
+        for i in row.split("/"):
+            chipgoogle.append({"title": i})
+        return chipgoogle
+
+    def inputnewcontext(row):
+        inputnewcontext = []
+        for i in row.split("/"):
+            inputnewcontext.append(i)
+        return inputnewcontext
+
+    defaultcontext = {
+        "id": "",
+        "parentId": row[23] or "",
+        "rootParentId": row[23] or "",
+        "name": row[0],
+        "auto": "false",
+        "contexts": inputnewcontext(row[4]),
+        "responses": [
+            {
+                "resetContexts": "false",
+                "action": "",
+                "affectedContexts": [],
+                "parameters": [],
+                "messages": [
+                    {
+                        "type": "suggestion_chips",
+                        "platform": "google",
+                        "lang": "en",
+                        "condition": "",
+                        "suggestions": chipgoogle(row[22])
+                    },
+                    {
+                        "type": 0,
+                        "lang": "en",
+                        "condition": "",
+                        "speech": row[1]
+                    },
+                    {
+                        "type": 4,
+                        "lang": "en",
+                        "condition": "",
+                        "payload": {
+                            "richContent": [
+                                [
+                                    {
+                                        "type": "chips",
+                                        "options": chip(row[22])
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                ],
+                "defaultResponsePlatforms": {
+                        "google": "true"
+                    },
+                "speech": []
+            }
         ],
         "priority": 500000,
-        "webhookUsed": "true",
+        "webhookUsed": "false",
         "webhookForSlotFilling": "false",
-        "fallbackIntent": "false",
+        "fallbackIntent": "true",
         "events": [],
         "conditionalResponses": [],
         "condition": "",
         "conditionalFollowupEvents": []
     }
-    return outputOutputContext
+    return defaultcontext
