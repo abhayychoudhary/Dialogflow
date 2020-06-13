@@ -16,7 +16,7 @@ with open(csvfile, 'r') as file:
         print(trainingjsonfile.userSays(row))
         if row[21]:
             with open(importFolder+row[0]+".json",'w') as f:
-                json.dump(trainingjsonfile.defaultcontext(row), f, indent=2)
+                json.dump(trainingjsonfile.defaultcontext(row), f, indent=2, ensure_ascii=False)
         else:
             with open(importFolder+row[0]+"_usersays_en.json", 'w') as f:
                 json.dump(trainingjsonfile.userSays(row), f, indent=2)
@@ -24,18 +24,18 @@ with open(csvfile, 'r') as file:
                 trainingjsonfile.outputOutputContext(row)
                 print(trainingjsonfile.outputOutputContext(row))
                 with open(importFolder+row[0]+".json", 'w') as f:
-                    json.dump(trainingjsonfile.outputOutputContext(row), f, indent=2)
+                    json.dump(trainingjsonfile.outputOutputContext(row), f, indent=2, ensure_ascii=False)
             elif row[3]:
                 trainingjsonfile.inputContext(row)
                 print(trainingjsonfile.inputContext(row))
                 with open(importFolder+row[0]+".json", 'w') as f:
-                    json.dump(trainingjsonfile.inputContext(row), f, indent=2)
+                    json.dump(trainingjsonfile.inputContext(row), f, indent=2, ensure_ascii=False)
             elif row[4]:
                 trainingjsonfile.outputContext(row)
                 print(trainingjsonfile.outputContext(row))
                 with open(importFolder+row[0]+".json", 'w') as f:
-                    json.dump(trainingjsonfile.outputContext(row), f, indent=2)
+                    json.dump(trainingjsonfile.outputContext(row), f, indent=2, ensure_ascii=False)
             else:
                 trainingjsonfile.noFollowup(row)
                 with open(importFolder+row[0]+".json", 'w') as f:
-                    json.dump(trainingjsonfile.noFollowup(row), f, indent=2)
+                    json.dump(trainingjsonfile.noFollowup(row), f, indent=2, ensure_ascii=False)
