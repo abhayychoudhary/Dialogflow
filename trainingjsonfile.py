@@ -7,52 +7,6 @@ def userSays(row):
             "id": "",
             "data": [
                 {
-                    "text": row[6],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[7],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[8],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        }, {
-            "id": "",
-            "data": [
-                {
-                    "text": row[9],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        }, {
-            "id": "",
-            "data": [
-                {
                     "text": row[10],
                     "userDefined": "false"
                 }
@@ -96,8 +50,7 @@ def userSays(row):
             "isTemplate": "false",
             "count": 0,
             "updated": 0
-        },
-        {
+        }, {
             "id": "",
             "data": [
                 {
@@ -108,8 +61,7 @@ def userSays(row):
             "isTemplate": "false",
             "count": 0,
             "updated": 0
-        },
-        {
+        }, {
             "id": "",
             "data": [
                 {
@@ -180,12 +132,65 @@ def userSays(row):
             "isTemplate": "false",
             "count": 0,
             "updated": 0
+        },
+        {
+            "id": "",
+            "data": [
+                {
+                    "text": row[21],
+                    "userDefined": "false"
+                }
+            ],
+            "isTemplate": "false",
+            "count": 0,
+            "updated": 0
+        },
+        {
+            "id": "",
+            "data": [
+                {
+                    "text": row[22],
+                    "userDefined": "false"
+                }
+            ],
+            "isTemplate": "false",
+            "count": 0,
+            "updated": 0
+        },
+        {
+            "id": "",
+            "data": [
+                {
+                    "text": row[23],
+                    "userDefined": "false"
+                }
+            ],
+            "isTemplate": "false",
+            "count": 0,
+            "updated": 0
+        },
+        {
+            "id": "",
+            "data": [
+                {
+                    "text": row[24],
+                    "userDefined": "false"
+                }
+            ],
+            "isTemplate": "false",
+            "count": 0,
+            "updated": 0
         }
     ]
     return userSays
 
 
 def noFollowup(row):
+    def webhook(row):
+        if(row=="" or row.lower()=="false"):
+            return False
+        else:
+            return True
     noFollowup = {
         "id": "",
         "name": row[0],
@@ -199,7 +204,7 @@ def noFollowup(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "en",
+                        "lang": "hi",
                                 "condition": "",
                                 "speech": row[1]
                     }
@@ -209,7 +214,7 @@ def noFollowup(row):
             }
         ],
         "priority": 500000,
-        "webhookUsed": "true",
+        "webhookUsed": webhook(row[8]),
         "webhookForSlotFilling": "false",
         "fallbackIntent": "false",
         "events": [],
@@ -221,6 +226,11 @@ def noFollowup(row):
 
 
 def inputContext(row):
+    def webhook(row):
+        if(row=="" or row.lower()=="false"):
+            return False
+        else:
+            return True
     inputContext = {
         "id": "",
         "name": row[0],
@@ -240,7 +250,7 @@ def inputContext(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "en",
+                        "lang": "hi",
                         "condition": "",
                         "speech": row[1]
                     }
@@ -250,7 +260,7 @@ def inputContext(row):
             }
         ],
         "priority": 500000,
-        "webhookUsed": "true",
+        "webhookUsed": webhook(row[8]),
         "webhookForSlotFilling": "false",
         "fallbackIntent": "false",
         "events": [],
@@ -262,6 +272,11 @@ def inputContext(row):
 
 
 def outputContext(row):
+    def webhook(row):
+        if(row=="" or row.lower()=="false"):
+            return False
+        else:
+            return True
     outputContext = {
         "id": "",
         "name": row[0],
@@ -277,7 +292,7 @@ def outputContext(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "en",
+                        "lang": "hi",
                         "condition": "",
                         "speech": row[1]
                     }
@@ -287,7 +302,7 @@ def outputContext(row):
             }
         ],
         "priority": 500000,
-        "webhookUsed": "true",
+        "webhookUsed": webhook(row[8]),
         "webhookForSlotFilling": "false",
         "fallbackIntent": "false",
         "events": [],
@@ -299,6 +314,12 @@ def outputContext(row):
 
 
 def outputOutputContext(row):
+    def webhook(row):
+        if(row=="" or row.lower()=="false"):
+            return False
+        else:
+            return True
+
     def chip(row):
         chip = []
         for i in row.split("/"):
@@ -324,11 +345,11 @@ def outputOutputContext(row):
             inputnewcontext.append(i)
         return inputnewcontext
 
-    data = chip(row[22])[0].get("text", "")
+    data = chip(row[6])[0].get("text", "")
 
     if data:
         outputOutputContext = {
-            "id": row[23] or "",
+            "id": row[7] or "",
             "name": row[0],
             "auto": "true",
             "contexts": inputnewcontext(row[4]),
@@ -341,26 +362,26 @@ def outputOutputContext(row):
                         {
                             "type": "suggestion_chips",
                             "platform": "google",
-                            "lang": "en",
+                            "lang": "hi",
                             "condition": "",
-                            "suggestions": chipgoogle(row[22])
+                            "suggestions": chipgoogle(row[6])
                         },
                         {
                             "type": 0,
-                            "lang": "en",
+                            "lang": "hi",
                             "condition": "",
                             "speech": row[1]
                         },
                         {
                             "type": 4,
-                            "lang": "en",
+                            "lang": "hi",
                             "condition": "",
                             "payload": {
                                 "richContent": [
                                     [
                                         {
                                             "type": "chips",
-                                            "options": chip(row[22])
+                                            "options": chip(row[6])
                                         }
                                     ]
                                 ]
@@ -375,7 +396,7 @@ def outputOutputContext(row):
                 }
             ],
             "priority": 500000,
-            "webhookUsed": "false",
+            "webhookUsed": webhook(row[8]),
             "webhookForSlotFilling": "false",
             "fallbackIntent": "false",
             "events": [],
@@ -385,7 +406,7 @@ def outputOutputContext(row):
         }
     else:
         outputOutputContext = {
-            "id": row[23] or "",
+            "id": row[7] or "",
             "name": row[0],
             "auto": "true",
             "contexts": inputnewcontext(row[4]),
@@ -397,7 +418,7 @@ def outputOutputContext(row):
                     "messages": [
                         {
                             "type": 0,
-                            "lang": "en",
+                            "lang": "hi",
                             "condition": "",
                             "speech": row[1]
                         }
@@ -410,7 +431,7 @@ def outputOutputContext(row):
                 }
             ],
             "priority": 500000,
-            "webhookUsed": "false",
+            "webhookUsed": webhook(row[8]),
             "webhookForSlotFilling": "false",
             "fallbackIntent": "false",
             "events": [],
@@ -423,6 +444,12 @@ def outputOutputContext(row):
 
 
 def defaultcontext(row):
+    def webhook(row):
+        if(row=="" or row.lower()=="false"):
+            return False
+        else:
+            return True
+
     def chip(row):
         chip = []
         for i in row.split("/"):
@@ -443,8 +470,8 @@ def defaultcontext(row):
 
     defaultcontext = {
         "id": "",
-        "parentId": row[23] or "",
-        "rootParentId": row[23] or "",
+        "parentId": row[7] or "",
+        "rootParentId": row[7] or "",
         "name": row[0],
         "auto": "false",
         "contexts": inputnewcontext(row[4]),
@@ -455,34 +482,34 @@ def defaultcontext(row):
                 "affectedContexts": [],
                 "parameters": [],
                 "messages": [
-                    {
-                        "type": "suggestion_chips",
-                        "platform": "google",
-                        "lang": "en",
-                        "condition": "",
-                        "suggestions": chipgoogle(row[22])
-                    },
+                    # {
+                    #     "type": "suggestion_chips",
+                    #     "platform": "google",
+                    #     "lang": "hi",
+                    #     "condition": "",
+                    #     "suggestions": chipgoogle(row[6])
+                    # },
                     {
                         "type": 0,
-                        "lang": "en",
+                        "lang": "hi",
                         "condition": "",
                         "speech": row[1]
                     },
-                    {
-                        "type": 4,
-                        "lang": "en",
-                        "condition": "",
-                        "payload": {
-                            "richContent": [
-                                [
-                                    {
-                                        "type": "chips",
-                                        "options": chip(row[22])
-                                    }
-                                ]
-                            ]
-                        }
-                    }
+                    # {
+                    #     "type": 4,
+                    #     "lang": "hi",
+                    #     "condition": "",
+                    #     "payload": {
+                    #         "richContent": [
+                    #             [
+                    #                 {
+                    #                     "type": "chips",
+                    #                     "options": chip(row[6])
+                    #                 }
+                    #             ]
+                    #         ]
+                    #     }
+                    # }
                 ],
                 "defaultResponsePlatforms": {
                         "google": "true"
@@ -491,7 +518,7 @@ def defaultcontext(row):
             }
         ],
         "priority": 500000,
-        "webhookUsed": "false",
+        "webhookUsed": webhook(row[8]),
         "webhookForSlotFilling": "false",
         "fallbackIntent": "true",
         "events": [],
