@@ -1,0 +1,46 @@
+{
+  "id": "9de82901-8af3-47ae-ab67-b267c8ca7dd2",
+  "name": "INTENT1",
+  "auto": "true",
+  "contexts": [
+    "welcome"
+  ],
+  "responses": [
+    {
+      "resetContexts": "false",
+      "affectedContexts": [
+        {
+          "name": "test",
+          "parameters": {},
+          "lifespan": "20"
+        },
+        {
+          "name": "new",
+          "parameters": {},
+          "lifespan": "10"
+        }
+      ],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "hi",
+          "condition": "",
+          "speech": "Hellow "
+        }
+      ],
+      "defaultResponsePlatforms": {
+        "google": "true"
+      },
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": "false",
+  "fallbackIntent": "false",
+  "events": [],
+  "conditionalResponses": [],
+  "condition": "",
+  "conditionalFollowupEvents": []
+}
