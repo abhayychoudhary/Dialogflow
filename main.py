@@ -15,7 +15,7 @@ with open(csvfile, 'r') as file:
         trainingjsonfile.userSays(row)
         print(trainingjsonfile.userSays(row))
         
-        if row[21]:
+        if row[5]:
             with open(importFolder+row[0]+".json",'w') as f:
                 json.dump(trainingjsonfile.defaultcontext(row), f, indent=2, ensure_ascii=False)
         else:
