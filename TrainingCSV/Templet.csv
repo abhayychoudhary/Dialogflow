@@ -1,3 +1,4 @@
-Intent,Responses,Telephony Response,Output,Input,Fallback,CustomPayload,id,Webhook,End of Conversation,Training phrases-1,Training phrases-2,Training phrases-3,Training phrases-4,Training phrases-5,Training phrases-6,Training phrases-7,Training phrases-8,Training phrases-9,Training phrases-10,Training phrases-11,Training phrases-12,Training phrases-13,Training phrases-14,Training phrases-15
-INTENT1,Hellow ,,test=20/new=10,welcome,,,9de82901-8af3-47ae-ab67-b267c8ca7dd2,,,,,,,,,,,,,,,,,hey
-Fallback,,,,,yes,,9de82901-8af3-47ae-ab67-b267c8ca7dd2,TRUE,,hi ,hello,,,,,,,,,,,,,
+Intent,Responses,Telephony Response,Output,Input,Fallback,CustomPayload,id,Webhook,End of Conversation,Lang,,Training phrases-1,Training phrases-2,Training phrases-3,Training phrases-4,Training phrases-5,Training phrases-6,Training phrases-7,Training phrases-8,Training phrases-9,Training phrases-10,Training phrases-11,Training phrases-12,Training phrases-13,Training phrases-14,Training phrases-15
+INTENT1,Hellow,,test=20/new=10,welcome,,,9de82901-8af3-47ae-ab67-b267c8ca7dd2,,,,,,,,,,,,,,,,,,,hey
+Fallback,,,,,yes,,9de82901-8af3-47ae-ab67-b267c8ca7dd2,TRUE,,,,hi,hello,,,,,,,,,,,,,
+Test,धन्यवाद करने के लिए उत्तर दें,,,,,,,,,hi,,नमस्ते,ठीक,,,,,,,,,,,,,
