@@ -1,188 +1,12 @@
 import json
 
-
 def userSays(row):
-    userSays = [
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[10],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[11],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[12],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[13],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        }, {
-            "id": "",
-            "data": [
-                {
-                    "text": row[14],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        }, {
-            "id": "",
-            "data": [
-                {
-                    "text": row[15],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[16],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[17],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[18],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[19],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[20],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[21],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[22],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[23],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        },
-        {
-            "id": "",
-            "data": [
-                {
-                    "text": row[24],
-                    "userDefined": "false"
-                }
-            ],
-            "isTemplate": "false",
-            "count": 0,
-            "updated": 0
-        }
-    ]
-    return userSays
+        userSays = []
+        for i in row[12:]:
+            if(i):
+                userSays.append({"id": "","data": [{"text": i,"userDefined": "false"}],"isTemplate": "false","count": 0,"updated": 0})
+        return userSays
+
 
 
 def noFollowup(row):
@@ -204,7 +28,7 @@ def noFollowup(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                                 "condition": "",
                                 "speech": row[1]
                     }
@@ -250,7 +74,7 @@ def inputContext(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                         "condition": "",
                         "speech": row[1]
                     }
@@ -292,7 +116,7 @@ def outputContext(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                         "condition": "",
                         "speech": row[1]
                     }
@@ -362,19 +186,19 @@ def outputOutputContext(row):
                         {
                             "type": "suggestion_chips",
                             "platform": "google",
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "suggestions": chipgoogle(row[6])
                         },
                         {
                             "type": 0,
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "speech": row[1]
                         },
                         {
                             "type": 4,
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "payload": {
                                 "richContent": [
@@ -418,7 +242,7 @@ def outputOutputContext(row):
                     "messages": [
                         {
                             "type": 0,
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "speech": row[1]
                         }
@@ -485,19 +309,19 @@ def defaultcontext(row):
                     # {
                     #     "type": "suggestion_chips",
                     #     "platform": "google",
-                    #     "lang": "hi",
+                    #     "lang": row[10] or "en",
                     #     "condition": "",
                     #     "suggestions": chipgoogle(row[6])
                     # },
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                         "condition": "",
                         "speech": row[1]
                     },
                     # {
                     #     "type": 4,
-                    #     "lang": "hi",
+                    #     "lang": row[10] or "en",
                     #     "condition": "",
                     #     "payload": {
                     #         "richContent": [
