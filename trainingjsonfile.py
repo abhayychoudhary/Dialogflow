@@ -2,10 +2,11 @@ import json
 
 def userSays(row):
         userSays = []
-        for i in row[10:]:
+        for i in row[12:]:
             if(i):
                 userSays.append({"id": "","data": [{"text": i,"userDefined": "false"}],"isTemplate": "false","count": 0,"updated": 0})
         return userSays
+
 
 
 def noFollowup(row):
@@ -27,7 +28,7 @@ def noFollowup(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                                 "condition": "",
                                 "speech": row[1]
                     }
@@ -73,7 +74,7 @@ def inputContext(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                         "condition": "",
                         "speech": row[1]
                     }
@@ -115,7 +116,7 @@ def outputContext(row):
                 "messages": [
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                         "condition": "",
                         "speech": row[1]
                     }
@@ -185,19 +186,19 @@ def outputOutputContext(row):
                         {
                             "type": "suggestion_chips",
                             "platform": "google",
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "suggestions": chipgoogle(row[6])
                         },
                         {
                             "type": 0,
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "speech": row[1]
                         },
                         {
                             "type": 4,
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "payload": {
                                 "richContent": [
@@ -241,7 +242,7 @@ def outputOutputContext(row):
                     "messages": [
                         {
                             "type": 0,
-                            "lang": "hi",
+                            "lang": row[10] or "en",
                             "condition": "",
                             "speech": row[1]
                         }
@@ -308,19 +309,19 @@ def defaultcontext(row):
                     # {
                     #     "type": "suggestion_chips",
                     #     "platform": "google",
-                    #     "lang": "hi",
+                    #     "lang": row[10] or "en",
                     #     "condition": "",
                     #     "suggestions": chipgoogle(row[6])
                     # },
                     {
                         "type": 0,
-                        "lang": "hi",
+                        "lang": row[10] or "en",
                         "condition": "",
                         "speech": row[1]
                     },
                     # {
                     #     "type": 4,
-                    #     "lang": "hi",
+                    #     "lang": row[10] or "en",
                     #     "condition": "",
                     #     "payload": {
                     #         "richContent": [
