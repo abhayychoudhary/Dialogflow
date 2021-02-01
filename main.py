@@ -3,7 +3,7 @@ import json
 import trainingjsonfile
 
 # Define The folder name
-csvfile = "Templet1.csv"
+csvfile = "TrainingCSV/Templet1.csv"
 
 # Define the Folder name where you want to create all the JSON file.
 importFolder="Intent"
