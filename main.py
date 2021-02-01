@@ -6,7 +6,7 @@ import trainingjsonfile
 csvfile = "Templet1.csv"
 
 # Define the Folder name where you want to create all the JSON file.
-importFolder=""
+importFolder="Intent"
 
 with open(csvfile, 'r', encoding='utf-8') as file:
     reader = csv.reader(file)
@@ -20,7 +20,7 @@ with open(csvfile, 'r', encoding='utf-8') as file:
                 json.dump(trainingjsonfile.defaultcontext(row), f, indent=2, ensure_ascii=False)
         else:
             if(row[10]):
-                with open(importFolder+row[0]+"_usersays_+"row[10]"+.json", 'w', encoding='utf-8') as f:
+                with open(importFolder+row[0]+"_usersays_"+row[10]+".json", 'w', encoding='utf-8') as f:
                     json.dump(trainingjsonfile.userSays(row), f, indent=2, ensure_ascii=False)
             else:
                 with open(importFolder+row[0]+"_usersays_en.json", 'w', encoding='utf-8') as f:
