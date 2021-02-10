@@ -14,4 +14,6 @@ Before you start please install the dependency library
 
 The code is build with generate Json file inside Intend Folder which you need to upload in DF agent
 
+### LICENCE
+This project is licensed under the terms of the Apache License 2.0 license
 
