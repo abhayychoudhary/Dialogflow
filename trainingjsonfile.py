@@ -1,10 +1,11 @@
 import json
+from uuid import uuid4
 
 def userSays(row):
         userSays = []
         for i in row[12:]:
             if(i):
-                userSays.append({"id": "","data": [{"text": i,"userDefined": "false"}],"isTemplate": "false","count": 0,"updated": 0})
+                userSays.append({"id": "","data": [{"text": i,"userDefined": "false"}],"isTemplate": "false","count": 0,"lang":row[10] or "en","updated": 0})
         return userSays
 
 
@@ -16,9 +17,9 @@ def noFollowup(row):
         else:
             return True
     noFollowup = {
-        "id": "",
+        "id": str(uuid4()),
         "name": row[0],
-        "auto": "true",
+        "auto": True,
         "contexts": [],
         "responses": [
             {
