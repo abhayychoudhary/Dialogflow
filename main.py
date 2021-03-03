@@ -1,12 +1,13 @@
 import csv
 import json
 import trainingjsonfile
+import os
 
 # Define The folder name
-csvfile = "TrainingCSV/Templet1.csv"
+csvfile = "TrainingCSV/Templet.csv"
 
 # Define the Folder name where you want to create all the JSON file.
-importFolder="Intent"
+importFolder="Intent/"
 
 with open(csvfile, 'r', encoding='utf-8') as file:
     reader = csv.reader(file)
@@ -37,6 +38,20 @@ with open(csvfile, 'r', encoding='utf-8') as file:
                 with open(importFolder+row[0]+".json", 'w', encoding='utf-8') as f:
                     json.dump(trainingjsonfile.outputContext(row), f, indent=2, ensure_ascii=False)
             else:
-                trainingjsonfile.noFollowup(row)
-                with open(importFolder+row[0]+".json", 'w', encoding='utf-8') as f:
-                    json.dump(trainingjsonfile.noFollowup(row), f, indent=2, ensure_ascii=False)
+                #If the .json file is present it will append the message for different language in the same file.
+                if(os.path.exists(importFolder+row[0]+".json")):
+                    with open(importFolder+row[0]+".json", encoding="utf8") as f:
+                        data = json.load(f)
+                    message = {
+                                    "type": 0,
+                                    "lang": row[10] or "en",
+                                            "condition": "",
+                                            "speech": row[1]
+                                }
+                    data['responses'][0]['messages'].append(message)
+                    with open(importFolder+row[0]+".json", 'w', encoding='utf-8') as f:
+                        json.dump(data, f, indent=2, ensure_ascii=False)
+                else:
+                    trainingjsonfile.noFollowup(row)
+                    with open(importFolder+row[0]+".json", 'w', encoding='utf-8') as f:
+                        json.dump(trainingjsonfile.noFollowup(row), f, indent=2, ensure_ascii=False)
